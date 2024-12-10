@@ -32,7 +32,7 @@
                 sex = #{sex},
             </if>
             <if test="idNumber != null and idNumber != ''">
-                idNumber = #{idNumber},
+                id_number = #{idNumber},
             </if>
             <if test="status != null">
                 status = #{status}
