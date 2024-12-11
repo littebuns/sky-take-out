@@ -8,11 +8,15 @@ import com.sky.service.DishService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/dish")
@@ -34,6 +38,13 @@ public class DishController {
     public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO){
         PageResult pageResult = dishService.page(dishPageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    @ApiOperation("删除菜品")
+    @DeleteMapping
+    public Result delete(@RequestParam List<Long> ids) throws Exception {
+        dishService.deleteBatch(ids);
+        return Result.success();
     }
 
 }
