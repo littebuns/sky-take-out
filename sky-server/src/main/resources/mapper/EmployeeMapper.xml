@@ -35,13 +35,13 @@
                 id_number = #{idNumber},
             </if>
             <if test="status != null">
-                status = #{status}
+                status = #{status},
             </if>
             <if test="updateUser != null and updateUser != ''">
-                update_user = #{updateUser}
+                update_user = #{updateUser},
             </if>
             <if test="status != null">
-                status = #{status}
+                status = #{status},
             </if>
         </set>
 
