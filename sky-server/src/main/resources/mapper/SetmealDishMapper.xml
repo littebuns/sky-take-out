@@ -4,12 +4,18 @@
 <mapper namespace="com.sky.mapper.SetmealDishMapper">
     <insert id="batchInsert">
         insert into setmeal_dish (setmeal_id, dish_id, name, price, copies) VALUES
-            <foreach collection="setmealDishes" item="setmealDish" separator="," >
+            <foreach collection="setmealIds" item="setmealDish" separator="," >
                 (#{setmealDish.setmealId}, #{setmealDish.dishId}, #{setmealDish.name}, #{setmealDish.price}, #{setmealDish.copies})
             </foreach>
 
     </insert>
 
+    <delete id="deleteBatchBySetmealIds">
+        delete from setmeal_dish where setmeal_id in
+        <foreach collection="setmealIds" item="setmealId" separator="," open="(" close=")">
+            #{setmealId}
+        </foreach>
+    </delete>
 
     <select id="getSetmealByDishIds" resultType="java.lang.Long">
         select setmeal_id from setmeal_dish where dish_id in
