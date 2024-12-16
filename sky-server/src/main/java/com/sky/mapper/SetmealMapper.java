@@ -29,7 +29,7 @@ public interface SetmealMapper extends BaseMapper<Setmeal> {
     @Insert("insert into setmeal (name, category_id, price, status, description, image, create_time, update_time, create_user, update_user) " +
             "values (#{name}, #{categoryId}, #{price}, #{status}, #{description}, #{image}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})" )
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    int create(Setmeal setmeal);
+    void create(Setmeal setmeal);
 
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmeal);
 
