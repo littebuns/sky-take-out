@@ -1,5 +1,6 @@
 package com.sky.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import com.sky.annotation.AutoFill;
 import com.sky.dto.SetmealPageQueryDTO;
@@ -14,7 +15,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface SetmealMapper {
+public interface SetmealMapper extends BaseMapper<Setmeal> {
 
     /**
      * 根据分类id查询套餐的数量
@@ -28,7 +29,7 @@ public interface SetmealMapper {
     @Insert("insert into setmeal (name, category_id, price, status, description, image, create_time, update_time, create_user, update_user) " +
             "values (#{name}, #{categoryId}, #{price}, #{status}, #{description}, #{image}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})" )
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insert(Setmeal setmeal);
+    int create(Setmeal setmeal);
 
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmeal);
 
